@@ -1,6 +1,6 @@
+use crate::model::subscriber::Subscriber;
 use dashmap::DashMap;
 use lazy_static::lazy_static;
-use crate::model::subscriber::Subscriber;
 
 // Singleton of Database
 lazy_static! {
@@ -16,9 +16,11 @@ impl SubscriberRepository {
             SUBSCRIBERS.insert(String::from(product_type), DashMap::new());
         };
 
-        SUBSCRIBERS.get(product_type).unwrap()
+        SUBSCRIBERS
+            .get(product_type)
+            .unwrap()
             .insert(subscribe_value.url.clone(), subscribe_value);
-        return subscriber
+        return subscriber;
     }
 
     pub fn list_all(product_type: &str) -> Vec<Subscriber> {
@@ -26,16 +28,19 @@ impl SubscriberRepository {
             SUBSCRIBERS.insert(String::from(product_type), DashMap::new());
         };
 
-        return SUBSCRIBERS.get(product_type).unwrap().iter()
-            .map(|f| f.value().clone()).collect();
+        return SUBSCRIBERS
+            .get(product_type)
+            .unwrap()
+            .iter()
+            .map(|f| f.value().clone())
+            .collect();
     }
 
     pub fn delete(product_type: &str, url: &str) -> Option<Subscriber> {
         if SUBSCRIBERS.get(product_type).is_none() {
             SUBSCRIBERS.insert(String::from(product_type), DashMap::new());
         }
-        let result = SUBSCRIBERS.get(product_type).unwrap()
-            .remove(url);
+        let result = SUBSCRIBERS.get(product_type).unwrap().remove(url);
         if !result.is_none() {
             return Some(result.unwrap().1);
         }
