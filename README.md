@@ -89,5 +89,7 @@ DashMap is more appropriate when dealing with unique identifiers, because it has
 
 We still need DashMap even with a  Singleton pattern, because thread safety alone isn't enough. A Singleotn using a regular Mutex<HashMap> would create a bottleneck as only one thread could access the map at a time. In a web server handling many requests, DashMap's concurrent access model significantly outperforms a mutex-protected Hashmap. The best approach would be to combine the, using a Singleton pattern to manage access to a DashMap.
 #### Reflection Publisher-2
+>In the Model-View Controller (MVC) compound pattern, there is no “Service” and “Repository”. Model in MVC covers both data storage and business logic. Explain based on your understanding of design principles, why we need to separate “Service” and “Repository” from a Model?
+
 
 #### Reflection Publisher-3
