@@ -1,4 +1,4 @@
-use rocket::serde::{Deserialize, Serialize};
+use rocket::serde::{Serialize, Deserialize};
 
 use bambangshop::APP_CONFIG;
 
