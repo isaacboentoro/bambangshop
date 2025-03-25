@@ -1,12 +1,13 @@
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
 pub mod controller;
-pub mod service;
-pub mod repository;
 pub mod model;
+pub mod repository;
+pub mod service;
 
-use dotenvy::dotenv;
 use crate::controller::route_stage;
+use dotenvy::dotenv;
 
 #[launch]
 fn rocket() -> _ {
